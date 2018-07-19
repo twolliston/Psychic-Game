@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Psychic-Game</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+
+    <!-- Custom Style sheet -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+
+</head>
+
+<body>
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <span class="navbar-brand ml-auto mr-auto">
+                <h1>Timothy Wolliston</h1>
+            </span>
+        </nav>
+    </header>
+
+
+
+
+    <div class="container">
+
+        <form id="game-box">
+            <!-- Section 1: Bio -->
+            <section id="game">
+              
+                <div id="game-body">
+                <h1>The Psychic Game</h1>
+                <p>Guess what letter i'm thinking of.</p>
+                <p>Press any key to start to start playing!</p>
+                </div>
+
+            </section>
+        </form>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        // Create an array that lists out all of the options (letters in the alphabet).
+        var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+        // Create variables to hold the number of wins, losses, user guesses, comptuer guesses ect.. Then start at 10.
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 10;
+        var computerGuess = " ";
+        var ltr = " ";
+        var myGuesses = " ";
+        var myPriorGuess = " ";
+
+        // FUNCTIONS
+        // ===========================================================================
+
+        // This function resets the game
+        function resetGame() {
+            myGuesses = " ";
+            computerGuess = " ";
+            guessesLeft = 10;
+        }
+
+        // This function randomly chooses a choice from the options array. This is the Computer's guess.
+        function getRandomletter(ltr) {
+            var guess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            return guess;
+        }
+         // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses and user guesses
+        function outputResults() {
+            var html =
+                "<h1>The Psychic Game</h1>" +
+                "<p>Guess what letter i'm thinking of</p>" +
+                "<p>Press any letter to start playing!</p>" +
+                "<p>wins: " + wins + "</p>" +
+                "<p>losses: " + losses + "</p>" +
+                "<p>guesses left: " + guessesLeft + "</p>" +
+                "<p>my guesses: " + myGuesses + "</p>";
+
+            // Set the inner HTML contents of the #game div to our html string
+            document.querySelector("#game-body").innerHTML = html;
+        }
+        // This function runs and itializes the game before user presses any keys.
+        resetGame();
+        computerGuess = getRandomletter(ltr);
+        outputResults();
+
+
+        // This function is ran whenever the user presses a key.
+        document.onkeyup = function (event) {
+
+            // Determines which key was pressed.
+            var userGuess = event.key;
+
+            if (computerChoices.indexOf(userGuess) == -1) {
+                //Not in the array!
+                alert("Try again Chose a letter in the alphabet"); 
+
+            } else if (myPriorGuess === userGuess) {
+                alert("Try again! pick another letter");
+            } else {
+
+                // Store the prior user guess
+                myPriorGuess = userGuess;
+
+                //  // Store the valid guesses to an Array
+                // myGuessArray.push(userGuess);
+
+                // Store user guesses to an string and decrement guess counter
+                myGuesses += userGuess + ',';
+                guessesLeft--;
+                
+                
+                // This logic determines the when the game is over and resets the game
+                if (guessesLeft == 0) {
+                    losses++;
+                    resetGame();
+                    computerGuess = getRandomletter(ltr);
+                }
+
+
+                // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
+                if (userGuess === computerGuess) {
+                    wins++;
+                    resetGame();
+                    computerGuess = getRandomletter(ltr);
+                }
+
+                // This function outputs resullts to the page 
+                outputResults();
+             
+            }
+        };
+    </script>
+
+
+
+    <footer class="footer text-center font-small footer-copyright py-3">
+
+        <span> © 2018 Copyright: Timothy Wolliston</span>
+
+    </footer>
+
+</body>
+
+</html>

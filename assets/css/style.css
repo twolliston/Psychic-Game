@@ -1,0 +1,93 @@
+
+   /* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+  }
+
+body {
+    background-image: url("../images/martinwessely.jpg");
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+  }
+
+
+
+nav {
+font-family: Georgia, "Times New Roman", Times, serif; 
+/* background-color: #ffffff; */
+border-bottom: solid 1px lightgray;  
+height: 72px;  
+
+
+}  
+
+
+.navbar-brand h1 {
+    position: fluid;
+    background: #2e4a6e;
+    color: #ffffff;
+    margin-left: -550px;
+    height: 78px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 330px;
+}
+
+.container {
+    margin-top: 60px;
+ }
+ 
+ #game-box {
+  border: solid 6px #2e4a6e;
+  width: 972px;
+}
+
+ #game {
+   padding: 20px;  
+   margin:auto;
+   width: 960px;
+   background-color: #ffffff;
+ }
+ 
+
+ 
+/* -------------------------------------------- */
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 16px;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 40px; /* Vertically center the text there */
+
+    /*font-size: 12px;*/
+    background-color: #666666;
+    border-top: solid 6px #2e4a6e;
+}
+
+ 
+  /* Custom page CSS
+  -------------------------------------------------- */
+  /* Not required for template or sticky footer method. */
+  
+  body > .container {
+    padding: 60px 15px 0;
+  }
+  
+   .footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  
+
+
+
+  
+  
+
